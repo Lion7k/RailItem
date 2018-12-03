@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 常用跳转Item视图属性 -->
+    <declare-styleable name="RailItemView">
+        <!-- l 表示左边 -->
+        <attr name="l_left_drawable" format="reference" />
+        <attr name="l_top_drawable" format="reference" />
+        <attr name="l_right_drawable" format="reference" />
+        <attr name="l_bottom_drawable" format="reference" />
+        <!-- r 表示右边 -->
+        <attr name="r_left_drawable" format="reference" />
+        <attr name="r_top_drawable" format="reference" />
+        <attr name="r_right_drawable" format="reference" />
+        <attr name="r_bottom_drawable" format="reference" />
+
+        <attr name="left_label" format="string" />
+        <attr name="right_label" format="string" />
+        <attr name="left_size" format="dimension" />
+        <attr name="right_size" format="dimension" />
+        <attr name="left_color" format="color" />
+        <attr name="right_color" format="color" />
+        <attr name="drawablePadding" format="dimension" />
+        <attr name="inner_padding" format="dimension" />
+
+        <!-- 底部划线 -->
+        <attr name="is_line" format="boolean" />
+        <attr name="line_margin" format="dimension" />
+        <attr name="line_width" format="dimension" />
+        <attr name="line_color" format="color" />
+    </declare-styleable>
+</resources>
