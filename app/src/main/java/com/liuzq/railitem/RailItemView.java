@@ -14,7 +14,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class RailItemView extends LinearLayout {
+public class RailItemView extends LinearLayout implements View.OnClickListener {
 
     //左边 包裹文字的图
     private Drawable ml_left_drawable, ml_top_drawable, ml_right_drawable, ml_bottom_drawable;
@@ -25,7 +25,7 @@ public class RailItemView extends LinearLayout {
     //右边 文字
     private CharSequence mRightText;
     //文字默认大小
-    private final int DEFAULT_SIZE = 16;
+    private int DEFAULT_SIZE = 16;
     //左边 文字大小
     private float mLeftSize;
     //右边 文字大小
@@ -38,8 +38,10 @@ public class RailItemView extends LinearLayout {
     private int mRightColor;
     //图文间隔 默认
     private int DEFAULT_PADD = 0;
-    //图文间隔
-    private int mDrawablePadding;
+    //左边图文间隔
+    private int mLeftPadding;
+    //右边图文间隔
+    private int mRightPadding;
     //内部间隔 默认
     private int DEFAULT_INNER_PADD = 0;
     //内部间隔
@@ -64,6 +66,8 @@ public class RailItemView extends LinearLayout {
     private final int DEFAULT_LINE_COLOR = Color.TRANSPARENT;
     private int mLineColor;
 
+    private OnItemClickListener listener;
+
     public RailItemView(Context context) {
         this(context, null);
     }
@@ -78,29 +82,31 @@ public class RailItemView extends LinearLayout {
     }
 
     private void getAttrs(Context context, AttributeSet attrs) {
-        @SuppressLint("Recycle") TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.RailItemView);
+        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.RailItemView);
+
         ml_left_drawable = array.getDrawable(R.styleable.RailItemView_l_left_drawable);
         ml_top_drawable = array.getDrawable(R.styleable.RailItemView_l_top_drawable);
         ml_right_drawable = array.getDrawable(R.styleable.RailItemView_l_right_drawable);
         ml_bottom_drawable = array.getDrawable(R.styleable.RailItemView_l_bottom_drawable);
+        mLeftPadding = array.getDimensionPixelOffset(R.styleable.RailItemView_l_padding, DEFAULT_PADD);
 
         mr_left_drawable = array.getDrawable(R.styleable.RailItemView_r_left_drawable);
         mr_top_drawable = array.getDrawable(R.styleable.RailItemView_r_top_drawable);
         mr_right_drawable = array.getDrawable(R.styleable.RailItemView_r_right_drawable);
         mr_bottom_drawable = array.getDrawable(R.styleable.RailItemView_r_bottom_drawable);
+        mRightPadding = array.getDimensionPixelSize(R.styleable.RailItemView_r_padding, DEFAULT_PADD);
         mLeftText = array.getString(R.styleable.RailItemView_left_label);
         mRightText = array.getString(R.styleable.RailItemView_right_label);
-        mLeftSize = array.getDimension(R.styleable.RailItemView_left_size, DEFAULT_SIZE);
-        mRightSize = array.getDimension(R.styleable.RailItemView_right_size, DEFAULT_SIZE);
+        mLeftSize = array.getDimensionPixelSize(R.styleable.RailItemView_left_size, DEFAULT_SIZE);
+        mRightSize = array.getDimensionPixelSize(R.styleable.RailItemView_right_size, DEFAULT_SIZE);
         mLeftColor = array.getColor(R.styleable.RailItemView_left_color, DEFAULT_COLOR);
         mRightColor = array.getColor(R.styleable.RailItemView_right_color, DEFAULT_COLOR);
-        mDrawablePadding = array.getDimensionPixelOffset(R.styleable.RailItemView_drawablePadding, DEFAULT_PADD);
-        mInnerPadding = array.getDimensionPixelOffset(R.styleable.RailItemView_inner_padding, DEFAULT_INNER_PADD);
+        mInnerPadding = array.getDimensionPixelSize(R.styleable.RailItemView_inner_padding, DEFAULT_INNER_PADD);
 
         //是否划线
         mIsLine = array.getBoolean(R.styleable.RailItemView_is_line, false);
-        mLineMargin = array.getDimensionPixelOffset(R.styleable.RailItemView_line_margin, DEFAULT_LINE_MARGIN);
-        mLineWidth = array.getDimensionPixelOffset(R.styleable.RailItemView_line_width, DEFAULT_LINE_WIDTH);
+        mLineMargin = array.getDimensionPixelSize(R.styleable.RailItemView_line_margin, DEFAULT_LINE_MARGIN);
+        mLineWidth = array.getDimensionPixelSize(R.styleable.RailItemView_line_width, DEFAULT_LINE_WIDTH);
         mLineColor = array.getColor(R.styleable.RailItemView_line_color, DEFAULT_LINE_COLOR);
 
         array.recycle();
@@ -117,19 +123,19 @@ public class RailItemView extends LinearLayout {
 
         mLeftView = new TextView(mContext);
         mRightView = new TextView(mContext);
-        mLeftView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mLeftSize);
-        mLeftView.setTextColor(mLeftColor);
-        mLeftView.setText(mLeftText);
-        mLeftView.setCompoundDrawablesWithIntrinsicBounds(ml_left_drawable, ml_top_drawable, ml_right_drawable, ml_bottom_drawable);
-        mLeftView.setCompoundDrawablePadding(mDrawablePadding);
-        mLeftView.setGravity(Gravity.CENTER_VERTICAL);
+        setLeftSize(mLeftSize);
+        setLeftColor(mLeftColor);
+        setLeftText(mLeftText);
+        setLeftCompoundDrawables(ml_left_drawable, ml_top_drawable, ml_right_drawable, ml_bottom_drawable);
+        setLeftCompoundDrawablePadding(mLeftPadding);
+        setLeftGravity(Gravity.CENTER_VERTICAL);
 
-        mRightView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mRightSize);
-        mRightView.setTextColor(mRightColor);
-        mRightView.setText(mRightText);
-        mRightView.setCompoundDrawablesWithIntrinsicBounds(mr_left_drawable, mr_top_drawable, mr_right_drawable, mr_bottom_drawable);
-        mRightView.setCompoundDrawablePadding(mDrawablePadding);
-        mRightView.setGravity(Gravity.CENTER_VERTICAL);
+        setRightSize(mRightSize);
+        setRightColor(mRightColor);
+        setRightText(mRightText);
+        setRightCompoundDrawables(mr_left_drawable, mr_top_drawable, mr_right_drawable, mr_bottom_drawable);
+        setRightCompoundDrawablePadding(mRightPadding);
+        setRightGravity(Gravity.CENTER_VERTICAL);
 
         LinearLayout layout = new LinearLayout(mContext);
         LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
@@ -157,60 +163,71 @@ public class RailItemView extends LinearLayout {
     }
 
     public RailItemView setLeftSize(float size) {
-        mLeftSize = size;
-        mLeftView.setTextSize(size);
+        mLeftView.setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
         return this;
     }
 
     public RailItemView setLeftColor(@ColorInt int color) {
-        mLeftColor = color;
         mLeftView.setTextColor(color);
         return this;
     }
 
     public RailItemView setLeftText(CharSequence text) {
-        mRightText = text;
         mLeftView.setText(text);
         return this;
     }
 
     public RailItemView setLeftCompoundDrawables(Drawable ml_left_drawable, Drawable ml_top_drawable, Drawable ml_right_drawable, Drawable ml_bottom_drawable) {
-        this.ml_left_drawable = ml_left_drawable;
-        this.ml_top_drawable = ml_top_drawable;
-        this.ml_right_drawable = ml_right_drawable;
-        this.ml_bottom_drawable = ml_bottom_drawable;
         mLeftView.setCompoundDrawablesWithIntrinsicBounds(ml_left_drawable, ml_top_drawable, ml_right_drawable, ml_bottom_drawable);
         return this;
     }
 
+    public RailItemView setLeftCompoundDrawablePadding(int drawablePadding) {
+        mLeftView.setCompoundDrawablePadding(drawablePadding);
+        return this;
+    }
+
+    public RailItemView setLeftGravity(int gravity) {
+        mLeftView.setGravity(gravity);
+        return this;
+    }
+
     public RailItemView setRightSize(float size) {
-        mRightSize = size;
-        mRightView.setTextSize(size);
+        mRightView.setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
         return this;
     }
 
     public RailItemView setRightColor(@ColorInt int color) {
-        mRightColor = color;
         mRightView.setTextColor(color);
         return this;
     }
 
     public RailItemView setRightText(CharSequence text) {
-        mRightText = text;
         mRightView.setText(text);
         return this;
     }
 
     public RailItemView setRightCompoundDrawables(Drawable mr_left_drawable, Drawable mr_top_drawable, Drawable mr_right_drawable, Drawable mr_bottom_drawable) {
-        this.mr_left_drawable = mr_left_drawable;
-        this.mr_top_drawable = mr_top_drawable;
-        this.mr_right_drawable = mr_right_drawable;
-        this.mr_bottom_drawable = mr_bottom_drawable;
-        mLeftView.setCompoundDrawablesWithIntrinsicBounds(mr_left_drawable, mr_top_drawable, mr_right_drawable, mr_bottom_drawable);
+        mRightView.setCompoundDrawablesWithIntrinsicBounds(mr_left_drawable, mr_top_drawable, mr_right_drawable, mr_bottom_drawable);
         return this;
     }
 
-    //是否隐藏横线
+    public RailItemView setRightCompoundDrawablePadding(int drawablePadding) {
+        mRightView.setCompoundDrawablePadding(drawablePadding);
+        return this;
+    }
+
+    public RailItemView setRightGravity(int gravity) {
+        mRightView.setGravity(gravity);
+        return this;
+    }
+
+    /**
+     * 是否隐藏底部横线
+     *
+     * @param isLine
+     * @return
+     */
     public RailItemView isLineView(boolean isLine) {
         if (lineView != null) {
             if (isLine) {
@@ -223,7 +240,7 @@ public class RailItemView extends LinearLayout {
     }
 
     /**
-     * 横线颜色
+     * 底部横线颜色
      *
      * @param color
      * @return
@@ -236,8 +253,6 @@ public class RailItemView extends LinearLayout {
         return this;
     }
 
-
-
     public RailItemView setLineParams(int lineWidth, int lineMargin) {
         mLineWidth = lineWidth;
         mLineMargin = lineMargin;
@@ -248,5 +263,22 @@ public class RailItemView extends LinearLayout {
             lineView.setLayoutParams(lineParams);
         }
         return this;
+    }
+
+    public RailItemView setListener(OnItemClickListener onItemClickListener) {
+        listener = onItemClickListener;
+        setOnClickListener(this);
+        return this;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick();
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (listener != null) {
+            listener.onItemClick();
+        }
     }
 }

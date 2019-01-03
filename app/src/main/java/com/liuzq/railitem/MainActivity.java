@@ -2,8 +2,9 @@ package com.liuzq.railitem;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RailItemView.OnItemClickListener {
 
     RailItemView itemView;
 
@@ -15,11 +16,17 @@ public class MainActivity extends AppCompatActivity {
         itemView = findViewById(R.id.rail_item_view);
         itemView
                 .setLeftColor(getResources().getColor(android.R.color.black))
-                .setLeftSize(10f)
+                .setLeftSize(75f)
                 .setLeftText("换字")
                 .isLineView(true)
                 .setLineColor(getResources().getColor(R.color.red))
-                .setLineParams(50, 10);
+                .setLineParams(50, 10)
+                .setListener(this);
 
+    }
+
+    @Override
+    public void onItemClick() {
+        Toast.makeText(this, "来呀！互相伤害呀。。。", Toast.LENGTH_SHORT).show();
     }
 }

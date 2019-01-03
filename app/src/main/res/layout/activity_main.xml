@@ -15,9 +15,9 @@
             android:id="@+id/rail_item_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:drawablePadding="10dp"
             app:inner_padding="20dp"
             app:is_line="true"
+            app:l_padding="20dp"
             app:l_left_drawable="@mipmap/ic_launcher"
             app:left_color="@color/colorAccent"
             app:left_label="左边"
@@ -26,6 +26,7 @@
             app:line_margin="10dp"
             app:line_width="1px"
             app:r_right_drawable="@mipmap/ic_launcher"
+            app:r_padding="10dp"
             app:right_color="@color/colorPrimary"
             app:right_label="右边"
             app:right_size="20sp" />
