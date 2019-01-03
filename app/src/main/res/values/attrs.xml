@@ -8,6 +8,7 @@
         <attr name="l_right_drawable" format="reference" />
         <attr name="l_bottom_drawable" format="reference" />
         <attr name="l_padding" format="dimension" />
+
         <!-- r 表示右边 -->
         <attr name="r_left_drawable" format="reference" />
         <attr name="r_top_drawable" format="reference" />
