@@ -88,7 +88,7 @@ public class RailItemView extends LinearLayout implements View.OnClickListener {
         ml_top_drawable = array.getDrawable(R.styleable.RailItemView_l_top_drawable);
         ml_right_drawable = array.getDrawable(R.styleable.RailItemView_l_right_drawable);
         ml_bottom_drawable = array.getDrawable(R.styleable.RailItemView_l_bottom_drawable);
-        mLeftPadding = array.getDimensionPixelOffset(R.styleable.RailItemView_l_padding, DEFAULT_PADD);
+        mLeftPadding = array.getDimensionPixelSize(R.styleable.RailItemView_l_padding, DEFAULT_PADD);
 
         mr_left_drawable = array.getDrawable(R.styleable.RailItemView_r_left_drawable);
         mr_top_drawable = array.getDrawable(R.styleable.RailItemView_r_top_drawable);
