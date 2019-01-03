@@ -15,18 +15,28 @@
         <attr name="r_bottom_drawable" format="reference" />
         <attr name="r_padding" format="dimension" />
 
+        <!-- 左边文字 -->
         <attr name="left_label" format="string" />
+        <!-- 右边文字 -->
         <attr name="right_label" format="string" />
+        <!-- 左边文字大小 -->
         <attr name="left_size" format="dimension" />
+        <!-- 右边文字大小 -->
         <attr name="right_size" format="dimension" />
+        <!-- 左边文字颜色 -->
         <attr name="left_color" format="color" />
+        <!-- 右边文字颜色 -->
         <attr name="right_color" format="color" />
+        <!-- 内部填充 -->
         <attr name="inner_padding" format="dimension" />
 
         <!-- 底部划线 -->
         <attr name="is_line" format="boolean" />
+        <!-- 底部划线边距 -->
         <attr name="line_margin" format="dimension" />
+        <!-- 底部划线宽度 -->
         <attr name="line_width" format="dimension" />
+        <!-- 底部划线颜色 -->
         <attr name="line_color" format="color" />
     </declare-styleable>
 </resources>
