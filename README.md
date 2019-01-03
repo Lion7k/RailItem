@@ -43,7 +43,6 @@ RailItem是一个功能强大的View，可以满足日常横条布局样式，�
     </declare-styleable>
 ````       
 ## 3.如何使用
-------
   ### 3.1xml
 ````
     <com.liuzq.railitem.RailItemView
