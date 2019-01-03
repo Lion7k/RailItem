@@ -46,36 +46,37 @@ RailItem是一个功能强大的View，可以满足日常横条布局样式，�
   ### 3.1xml
 ````
     <com.liuzq.railitem.RailItemView
-        android:id="@+id/rail_item_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:inner_padding="20dp"
-        app:is_line="true"
-        app:l_padding="20dp"
-        app:l_left_drawable="@mipmap/ic_launcher"
-        app:left_color="@color/colorAccent"
-        app:left_label="左边"
-        app:left_size="16sp"
-        app:line_color="@color/colorAccent"
-        app:line_margin="10dp"
-        app:line_width="1px"
-        app:r_right_drawable="@mipmap/ic_launcher"
-        app:r_padding="10dp"
-        app:right_color="@color/colorPrimary"
-        app:right_label="右边"
-        app:right_size="20sp" />  
+            android:id="@+id/rail_item_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:inner_padding="20dp"
+            app:is_line="true"
+            app:l_padding="20dp"
+            app:l_left_drawable="@mipmap/ic_launcher"
+            app:left_color="@color/colorAccent"
+            app:left_label="左边"
+            app:left_size="16sp"
+            app:line_color="@color/colorAccent"
+            app:line_margin="10dp"
+            app:line_width="1px"
+            app:r_right_drawable="@mipmap/ic_launcher"
+            app:r_padding="10dp"
+            app:right_color="@color/colorPrimary"
+            app:right_label="右边"
+            app:right_size="20sp" />
 ````          
   ### 3.2代码链式
 ````    
     /** 
      * 可以通过链式设置大部分常用的属性值
      */
-   `itemView.setLeftColor(getResources().getColor(android.R.color.black))
-           .setLeftSize(75f)
-           .setLeftText("换字")
-           .isLineView(true)
-           .setLineColor(getResources().getColor(R.color.red))
-           .setLineParams(50, 10)
-           .setListener(this);
+    itemView
+                .setLeftColor(getResources().getColor(android.R.color.black))
+                .setLeftSize(75f)
+                .setLeftText("换字")
+                .isLineView(true)
+                .setLineColor(getResources().getColor(R.color.red))
+                .setLineParams(50, 10)
+                .setListener(this);    
 ````    
                 
