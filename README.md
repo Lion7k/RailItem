@@ -1,12 +1,10 @@
-RailItem
+RailItem介绍
+=====
 
-1、功能描述
+#1、功能描述
 RailItem是一个功能强大的View，可以满足日常横条布局样式，开发者可已自行组合属性配置出属于自己风格的样式!还是直接看效果图吧！
 
-
-2、属性描述
-
-
+#2、属性描述
     <declare-styleable name="RailItemView">
         <!-- l 表示左边 -->
         <attr name="l_left_drawable" format="reference" />
@@ -45,9 +43,8 @@ RailItem是一个功能强大的View，可以满足日常横条布局样式，�
     </declare-styleable>
     
     
-3.如何使用
-  3.1xml
-  
+#3.如何使用<br>  
+  ##3.1xml<br>  
    <com.liuzq.railitem.RailItemView
         android:id="@+id/rail_item_view"
         android:layout_width="match_parent"
@@ -66,12 +63,12 @@ RailItem是一个功能强大的View，可以满足日常横条布局样式，�
         app:r_padding="10dp"
         app:right_color="@color/colorPrimary"
         app:right_label="右边"
-        app:right_size="20sp" />    
+        app:right_size="20sp" />  <br>    
             
-  3.2代码链式
-    /**
-     * 可以通过链式设置大部分常用的属性值
-     */
+  ##3.2代码链式<br>  
+    /** 
+     * 可以通过链式设置大部分常用的属性值<br>  
+     */\<br>  
    itemView.setLeftColor(getResources().getColor(android.R.color.black))
            .setLeftSize(75f)
            .setLeftText("换字")
