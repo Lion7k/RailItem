@@ -1,10 +1,12 @@
 RailItem介绍
 =====
 
-#1、功能描述<br>  
+1、功能描述<br>  
+------
 RailItem是一个功能强大的View，可以满足日常横条布局样式，开发者可已自行组合属性配置出属于自己风格的样式!还是直接看效果图吧！
 
-#2、属性描述<br>  
+2、属性描述<br>  
+------
     <declare-styleable name="RailItemView">
         <!-- l 表示左边 -->
         <attr name="l_left_drawable" format="reference" />
@@ -42,16 +44,17 @@ RailItem是一个功能强大的View，可以满足日常横条布局样式，�
         <attr name="line_color" format="color" />
     </declare-styleable>
     
-#3.如何使用<br>  
-  ##3.1xml<br>  
-   <com.liuzq.railitem.RailItemView
-        android:id="@+id/rail_item_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:inner_padding="20dp"
-        app:is_line="true"
-        app:l_padding="20dp"
-        app:l_left_drawable="@mipmap/ic_launcher"
+3.如何使用
+------
+  #3.1xml<br>  
+<com.liuzq.railitem.RailItemView
+android:id="@+id/rail_item_view"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+app:inner_padding="20dp"
+app:is_line="true"
+app:l_padding="20dp"
+app:l_left_drawable="@mipmap/ic_launcher"
         app:left_color="@color/colorAccent"
         app:left_label="左边"
         app:left_size="16sp"
@@ -64,7 +67,7 @@ RailItem是一个功能强大的View，可以满足日常横条布局样式，�
         app:right_label="右边"
         app:right_size="20sp" />  <br>    
             
-  ##3.2代码链式<br>  
+  #3.2代码链式<br>  
     /** 
      * 可以通过链式设置大部分常用的属性值<br>  
      */\<br>  
