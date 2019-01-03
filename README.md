@@ -1,10 +1,10 @@
 RailItem介绍
 =====
 
-#1、功能描述
+#1、功能描述<br>  
 RailItem是一个功能强大的View，可以满足日常横条布局样式，开发者可已自行组合属性配置出属于自己风格的样式!还是直接看效果图吧！
 
-#2、属性描述
+#2、属性描述<br>  
     <declare-styleable name="RailItemView">
         <!-- l 表示左边 -->
         <attr name="l_left_drawable" format="reference" />
@@ -41,7 +41,6 @@ RailItem是一个功能强大的View，可以满足日常横条布局样式，�
         <!-- 底部划线颜色 -->
         <attr name="line_color" format="color" />
     </declare-styleable>
-    
     
 #3.如何使用<br>  
   ##3.1xml<br>  
