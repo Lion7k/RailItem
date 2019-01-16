@@ -45,7 +45,7 @@ RailItem是一个功能强大的View，可以满足日常横条布局样式，�
 ## 3.如何使用
   ### 3.1xml
 ````
-    <com.liuzq.railitem.RailItemView
+    <com.liuzq.uikit.RailItemView
             android:id="@+id/rail_item_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
