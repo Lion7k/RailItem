@@ -96,8 +96,8 @@ public class RailItemView extends LinearLayout implements View.OnClickListener {
         mRightPadding = array.getDimensionPixelSize(R.styleable.RailItemView_r_padding, DEFAULT_PADD);
         mLeftText = array.getString(R.styleable.RailItemView_left_label);
         mRightText = array.getString(R.styleable.RailItemView_right_label);
-        mLeftSize = array.getDimension(R.styleable.RailItemView_left_size, UIUtils.sp2px(context, DEFAULT_SIZE));
-        mRightSize = array.getDimension(R.styleable.RailItemView_right_size, UIUtils.sp2px(context, DEFAULT_SIZE));
+        mLeftSize = array.getDimensionPixelSize(R.styleable.RailItemView_left_size, UIUtils.sp2px(context, DEFAULT_SIZE));
+        mRightSize = array.getDimensionPixelSize(R.styleable.RailItemView_right_size, UIUtils.sp2px(context, DEFAULT_SIZE));
         mLeftColor = array.getColor(R.styleable.RailItemView_left_color, DEFAULT_COLOR);
         mRightColor = array.getColor(R.styleable.RailItemView_right_color, DEFAULT_COLOR);
         mInnerPadding = array.getDimensionPixelSize(R.styleable.RailItemView_inner_padding, DEFAULT_INNER_PADD);
@@ -162,7 +162,7 @@ public class RailItemView extends LinearLayout implements View.OnClickListener {
     }
 
     public RailItemView setLeftSize(float size) {
-        mLeftView.setTextSize(size);
+        mLeftView.setTextSize(TypedValue.COMPLEX_UNIT_PX, UIUtils.sp2px(mContext, size));
         return this;
     }
 
@@ -192,7 +192,7 @@ public class RailItemView extends LinearLayout implements View.OnClickListener {
     }
 
     public RailItemView setRightSize(float size) {
-        mRightView.setTextSize(size);
+        mRightView.setTextSize(TypedValue.COMPLEX_UNIT_PX, UIUtils.sp2px(mContext, size));
         return this;
     }
 
