@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.liuzq.uikit.RailItemView;
+import com.liuzq.uikit.UIUtils;
 
 public class MainActivity extends AppCompatActivity implements RailItemView.OnItemClickListener {
 
@@ -17,11 +18,11 @@ public class MainActivity extends AppCompatActivity implements RailItemView.OnIt
 
         itemView = findViewById(R.id.rail_item_view);
         itemView
-                .setLeftColor(getResources().getColor(android.R.color.black))
+                .setLeftColor(UIUtils.getColor(this, android.R.color.black))
                 .setLeftSize(15f)
                 .setLeftText("换字")
                 .isLineView(true)
-                .setLineColor(getResources().getColor(R.color.red))
+                .setLineColor(UIUtils.getColor(this, R.color.red))
                 .setLineParams(50, 10)
                 .setListener(this);
 

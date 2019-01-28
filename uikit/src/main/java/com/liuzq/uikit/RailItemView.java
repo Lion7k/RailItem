@@ -77,12 +77,19 @@ public class RailItemView extends LinearLayout implements View.OnClickListener {
 
     public RailItemView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        getAttrs(context, attrs);
-    }
 
-    private void getAttrs(Context context, AttributeSet attrs) {
+        this.mContext = context;
+
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.RailItemView);
 
+        initAttrs(array);//初始化属性
+
+        array.recycle();
+
+        initView();//初始化相关操作
+    }
+
+    private void initAttrs(TypedArray array) {
         ml_left_drawable = array.getDrawable(R.styleable.RailItemView_l_left_drawable);
         ml_top_drawable = array.getDrawable(R.styleable.RailItemView_l_top_drawable);
         ml_right_drawable = array.getDrawable(R.styleable.RailItemView_l_right_drawable);
@@ -96,8 +103,8 @@ public class RailItemView extends LinearLayout implements View.OnClickListener {
         mRightPadding = array.getDimensionPixelSize(R.styleable.RailItemView_r_padding, DEFAULT_PADD);
         mLeftText = array.getString(R.styleable.RailItemView_left_label);
         mRightText = array.getString(R.styleable.RailItemView_right_label);
-        mLeftSize = array.getDimensionPixelSize(R.styleable.RailItemView_left_size, UIUtils.sp2px(context, DEFAULT_SIZE));
-        mRightSize = array.getDimensionPixelSize(R.styleable.RailItemView_right_size, UIUtils.sp2px(context, DEFAULT_SIZE));
+        mLeftSize = array.getDimensionPixelSize(R.styleable.RailItemView_left_size, UIUtils.sp2px(mContext, DEFAULT_SIZE));
+        mRightSize = array.getDimensionPixelSize(R.styleable.RailItemView_right_size, UIUtils.sp2px(mContext, DEFAULT_SIZE));
         mLeftColor = array.getColor(R.styleable.RailItemView_left_color, DEFAULT_COLOR);
         mRightColor = array.getColor(R.styleable.RailItemView_right_color, DEFAULT_COLOR);
         mInnerPadding = array.getDimensionPixelSize(R.styleable.RailItemView_inner_padding, DEFAULT_INNER_PADD);
@@ -107,16 +114,12 @@ public class RailItemView extends LinearLayout implements View.OnClickListener {
         mLineMargin = array.getDimensionPixelSize(R.styleable.RailItemView_line_margin, DEFAULT_LINE_MARGIN);
         mLineWidth = array.getDimensionPixelSize(R.styleable.RailItemView_line_width, DEFAULT_LINE_WIDTH);
         mLineColor = array.getColor(R.styleable.RailItemView_line_color, DEFAULT_LINE_COLOR);
-
-        array.recycle();
-        initView();
     }
 
     /**
      * 初始化数据
      */
     private void initView() {
-        mContext = getContext();
 //        setGravity(Gravity.CENTER_VERTICAL);
         setOrientation(VERTICAL);
 
